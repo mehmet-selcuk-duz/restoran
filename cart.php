@@ -1,6 +1,11 @@
 <?php 
 require_once "header.php"; 
 
+if (!isset($_SESSION['username'])) {
+	echo "Giriş Yapman Gerekli";
+	exit();
+}
+
 $basket_query = $pdo->prepare("
     SELECT b.quantity, b.id, f.name, f.price 
     FROM basket b 

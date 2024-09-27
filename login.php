@@ -4,9 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="FooYes - Quality delivery or takeaway food">
     <meta name="author" content="Ansonika">
-    <title>FooYes - Quality delivery or takeaway food</title>
+    <title>LezzetSepeti - Giriş Yap</title>
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
@@ -33,18 +32,20 @@
 			<figure>
 				<a href="index.html"><img src="img/logo.png" width="140" height="35" alt=""></a>
 			</figure>
-			<form action="system/function.php" method="post">
-    <div class="form-group">
-        <input class="form-control" type="text" name="username" required>
-        <i class="icon_mail_alt"></i>
-    </div>
-    <div class="form-group">
-        <input class="form-control" type="password" name="password" required>
-        <i class="icon_lock_alt"></i>
-    </div>
-    <button type="submit" class="btn_1">Login Now!</button>
-</form>
-			<div class="copy">© 2020 FooYes</div>
+			<form id="login" action="system/function.php" method="post">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="username" required>
+                    <i class="icon_mail_alt"></i>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" required>
+                    <i class="icon_lock_alt"></i>
+                </div>
+                <input type="hidden" name="islem" value="login">
+                <a href="#" onclick="document.getElementById('login').submit();" class="btn_1 gradient full-width">Giriş Yap</a>
+				<div class="text-center mt-2"><small>Hesabın Yokmu? <strong><a href="register.php">Kayıt Ol</a></strong></small></div>
+            </form>
+			<div class="copy">© 2024 LezzetSepeti</div>
 		</aside>
 	</div>
 

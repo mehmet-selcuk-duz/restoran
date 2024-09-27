@@ -4,9 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="FooYes - Quality delivery or takeaway food">
     <meta name="author" content="Ansonika">
-    <title>FooYes - Quality delivery or takeaway food</title>
+    <title>LezzetSepeti - Kayıt Ol</title>
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
@@ -31,39 +30,31 @@
 	<div id="register">
 		<aside>
 			<figure>
-				<a href="index.html"><img src="img/logo_sticky.svg" width="140" height="35" alt=""></a>
+				<a href="index.html"><img src="img/logo.png" width="140" height="35" alt=""></a>
 			</figure>
-			<div class="access_social">
-					<a href="#0" class="social_bt facebook">Register with Facebook</a>
-					<a href="#0" class="social_bt google">Register with Google</a>
-				</div>
-            <div class="divider"><span>Or</span></div>
-			<form method="post" action="msd.php">
+			<form id="kayit" method="post" action="system/function.php">
 				<div class="form-group">
-					<input class="form-control" type="text" placeholder="Name">
+					<input class="form-control" type="text" name="username" placeholder="Kullanıcı Adı">
 					<i class="icon_pencil-edit"></i>
 				</div>
 				<div class="form-group">
-					<input class="form-control" type="text" placeholder="Last Name">
+					<input class="form-control" type="text" name="name" placeholder="Ad">
 					<i class="icon_pencil-edit"></i>
 				</div>
 				<div class="form-group">
-					<input class="form-control" type="email" placeholder="Email">
-					<i class="icon_mail_alt"></i>
+					<input class="form-control" type="text" name="surname" placeholder="Soyad">
+					<i class="icon_pencil-edit"></i>
 				</div>
 				<div class="form-group">
-					<input class="form-control" type="password" id="password1" placeholder="Password">
-					<i class="icon_lock_alt"></i>
-				</div>
-				<div class="form-group">
-					<input class="form-control" type="password" id="password2" placeholder="Confirm Password">
+					<input class="form-control" type="password" name="password" placeholder="Şifre">
 					<i class="icon_lock_alt"></i>
 				</div>
 				<div id="pass-info" class="clearfix"></div>
-				<a href="#0" class="btn_1 gradient full-width">Register Now!</a>
-				<div class="text-center mt-2"><small>Already have an acccount? <strong><a href="#0">Sign In</a></strong></small></div>
+                <input type="hidden" name="islem" value="register">
+				<a href="#" onclick="document.getElementById('kayit').submit();" class="btn_1 gradient full-width">Kayıt Ol</a>
+				<div class="text-center mt-2"><small>Zaten Hesabın Varmı? <strong><a href="login.php">Giriş Yap</a></strong></small></div>
 			</form>
-			<div class="copy">© 2020 FooYes</div>
+			<div class="copy">© 2024 LezzetSepeti</div>
 		</aside>
 	</div>
 
