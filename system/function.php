@@ -166,4 +166,28 @@ if($islem == "login")
 
     header("Location: /detail.php?id=" . $restaurant_id);
     exit();
+}elseif($islem == "register")
+{
+    $username = $_POST['username'];
+    $name = $_POST['name'];
+    $surname = $_POST['surname'];
+    $password = md5($_POST['password']);
+    $current_date = date('Y-m-d');
+
+    $query = "INSERT INTO users (username, name, surname, password, created_at) 
+              VALUES (:username, :name, :surname, :password, :created_at)";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([
+        'username' => $username,
+        'name' => $name,
+        'surname' => $surname,
+        'password' => $password,
+        'created_at' => $current_date
+    ]);
+
+    if ($stmt) {
+        header("Location: /login.php");
+    } else {
+        echo "Kullanıcı eklenirken bir hata oluştu.";
+    }
 }
