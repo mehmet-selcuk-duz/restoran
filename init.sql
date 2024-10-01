@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Anamakine: 127.0.0.1
--- Üretim Zamanı: 21 Eyl 2024, 21:42:58
--- Sunucu sürümü: 10.4.32-MariaDB
--- PHP Sürümü: 8.2.12
+-- Anamakine: db:3306
+-- Üretim Zamanı: 01 Eki 2024, 15:06:50
+-- Sunucu sürümü: 5.7.44
+-- PHP Sürümü: 8.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,8 +33,8 @@ CREATE TABLE `basket` (
   `food_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `note` text NOT NULL,
-  `created_at` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `created_at` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -49,9 +49,9 @@ CREATE TABLE `comments` (
   `tittle` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `score` varchar(50) NOT NULL,
-  `created_at` date NOT NULL,
+  `created_at` date DEFAULT NULL,
   `deleted_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `comments`
@@ -60,7 +60,8 @@ CREATE TABLE `comments` (
 INSERT INTO `comments` (`id`, `user_id`, `restaurant_id`, `tittle`, `description`, `score`, `created_at`, `deleted_at`) VALUES
 (2, 1, 1, 'MSD', 'MSD', '10', '2024-09-20', NULL),
 (3, 1, 1, 'MSD', 'MSD', '5', '2024-09-20', NULL),
-(4, 1, 1, 'MSD', 'MSD', '1', '2024-09-20', NULL);
+(4, 1, 1, 'MSD', 'MSD', '1', '2024-09-20', NULL),
+(5, 10, 1, 'Ã§ok gÃ¼zel', 'Ã‡OK Ä°YÄ°', '9', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -74,7 +75,7 @@ CREATE TABLE `company` (
   `description` text NOT NULL,
   `logo_path` varchar(500) NOT NULL,
   `deleted_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `company`
@@ -96,8 +97,8 @@ CREATE TABLE `coupon` (
   `restaurant_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `discount` int(50) NOT NULL,
-  `created_at` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `created_at` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `coupon`
@@ -120,9 +121,9 @@ CREATE TABLE `food` (
   `image_path` varchar(255) NOT NULL,
   `price` float NOT NULL,
   `discount` int(11) NOT NULL,
-  `created_at` date NOT NULL,
+  `created_at` date DEFAULT NULL,
   `deleted_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `food`
@@ -143,9 +144,9 @@ CREATE TABLE `order` (
   `user_id` int(11) NOT NULL,
   `order_status` varchar(300) NOT NULL,
   `total_price` int(11) NOT NULL,
-  `created_at` date NOT NULL,
+  `created_at` date DEFAULT NULL,
   `restaurant_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `order`
@@ -156,7 +157,8 @@ INSERT INTO `order` (`id`, `user_id`, `order_status`, `total_price`, `created_at
 (3, 1, '1', 3550, '0000-00-00', 1),
 (4, 1, '1', 950, '0000-00-00', 1),
 (5, 1, '1', 150, '0000-00-00', 1),
-(6, 1, '1', 100, '0000-00-00', 1);
+(6, 1, '1', 100, '0000-00-00', 1),
+(7, 10, '1', 200, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -171,7 +173,7 @@ CREATE TABLE `order_items` (
   `quantity` int(11) NOT NULL,
   `price` float NOT NULL,
   `note` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `order_items`
@@ -185,7 +187,8 @@ INSERT INTO `order_items` (`id`, `food_id`, `order_id`, `quantity`, `price`, `no
 (5, 1, 4, 2, 200, 'dsd'),
 (6, 2, 4, 5, 750, '323'),
 (7, 2, 5, 1, 150, 'z'),
-(8, 1, 6, 1, 100, '');
+(8, 1, 6, 1, 100, ''),
+(9, 1, 7, 2, 200, 'ketÃ§ap olmasÄ±n');
 
 -- --------------------------------------------------------
 
@@ -202,8 +205,8 @@ CREATE TABLE `restaurant` (
   `address_district` varchar(255) NOT NULL,
   `address_detail` text NOT NULL,
   `image_path` varchar(500) NOT NULL,
-  `created_at` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `created_at` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `restaurant`
@@ -222,15 +225,15 @@ INSERT INTO `restaurant` (`id`, `company_id`, `name`, `description`, `address_pr
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `company_id` int(11) DEFAULT NULL,
-  `role` int(1) NOT NULL,
+  `role` int(1) NOT NULL DEFAULT '1',
   `name` varchar(255) NOT NULL,
   `surname` varchar(255) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(500) NOT NULL,
-  `balance` float NOT NULL,
-  `created_at` date NOT NULL,
+  `balance` float NOT NULL DEFAULT '0',
+  `created_at` date DEFAULT NULL,
   `deleted_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `users`
@@ -243,7 +246,10 @@ INSERT INTO `users` (`id`, `company_id`, `role`, `name`, `surname`, `username`, 
 (5, 1, 1, '', '', 'assaas', '600d475fa96e30530b548c9cfbb85187', 2, '0000-00-00', NULL),
 (6, 1, 1, '', '', 'bnbnb', '1f89c0f625513c51ed5388804e551046', 2, '0000-00-00', '2024-09-15'),
 (7, 1, 1, 'asass', 'sasassa', 'JOKER', '2817034d0cda67d7aa55fc4d3f3d5f2c', 23, '0000-00-00', NULL),
-(8, 1, 2, 'admin', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 10, '0000-00-00', NULL);
+(8, 1, 2, 'admin', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 10, '0000-00-00', NULL),
+(10, NULL, 1, 'selÃ§uk', 'test', 'test', '098f6bcd4621d373cade4e832627b4f6', 1342, '2024-09-29', NULL),
+(11, NULL, 1, 'test', 'test', 'test', '098f6bcd4621d373cade4e832627b4f6', 0, '2024-09-29', NULL),
+(12, 13, 1, 'demo', 'demo', 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 0, NULL, NULL);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -325,13 +331,13 @@ ALTER TABLE `users`
 -- Tablo için AUTO_INCREMENT değeri `basket`
 --
 ALTER TABLE `basket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `company`
@@ -355,13 +361,13 @@ ALTER TABLE `food`
 -- Tablo için AUTO_INCREMENT değeri `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `restaurant`
@@ -373,7 +379,7 @@ ALTER TABLE `restaurant`
 -- Tablo için AUTO_INCREMENT değeri `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Dökümü yapılmış tablolar için kısıtlamalar
